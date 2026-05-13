@@ -1,0 +1,16 @@
+/* Feed.css */
+
+.feed {
+  max-width: 470px;      /* Ancho del feed de Instagram */
+  margin: 0 auto;        /* Centrado */
+  padding: 80px 0 40px; /* 80px arriba para compensar el header fijo */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;             /* Espacio entre publicaciones */
+}
+
+.feed-empty {
+  text-align: center;
+  color: #8e8e8e;
+  margin-top: 40px;
+}

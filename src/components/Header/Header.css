@@ -1,0 +1,86 @@
+/* Header.css — Estilos de la barra superior */
+
+.header {
+  position: fixed;        /* Se queda fijo arriba aunque hagas scroll */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #ffffff;
+  border-bottom: 1px solid #dbdbdb; /* Gris claro, igual que Instagram */
+  z-index: 100;           /* Queda por encima de todo el contenido */
+}
+
+.header-container {
+  max-width: 935px;       /* Ancho máximo, igual que Instagram */
+  margin: 0 auto;         /* Centrado horizontal */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+/* Logo */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-logo-text {
+  font-family: 'Georgia', serif; /* Fuente más estilizada para el logo */
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+  /* Gradient de colores igual que Instagram */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-logo-icon {
+  font-size: 1.2rem;
+}
+
+/* Navegación */
+.header-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.header-nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  opacity: 0.5; /* Los inactivos se ven más opacos */
+}
+
+.header-nav-btn:hover {
+  background: #f0f0f0;
+  opacity: 1;
+}
+
+/* Clase active: el botón de la vista actual */
+.header-nav-btn.active {
+  opacity: 1;
+}
+
+/* Avatar del usuario */
+.header-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;     /* Círculo perfecto */
+  cursor: pointer;
+  border: 2px solid #dbdbdb;
+  transition: border-color 0.2s;
+  object-fit: cover;
+}
+
+.header-avatar:hover {
+  border-color: #833ab4;
+}

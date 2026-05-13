@@ -1,0 +1,199 @@
+/* Profile.css */
+
+.profile {
+  max-width: 935px;
+  margin: 0 auto;
+  padding: 80px 20px 40px; /* 80px para compensar el header */
+}
+
+/* Sección superior */
+.profile-info {
+  display: flex;
+  gap: 60px;
+  padding: 32px 0;
+  align-items: flex-start;
+}
+
+/* Avatar */
+.profile-avatar-wrapper {
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  padding: 3px; /* Espacio para el gradient ring */
+  background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white; /* Borde blanco entre el gradient y la foto */
+}
+
+/* Datos del perfil */
+.profile-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-top-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.profile-username {
+  font-size: 1.5rem;
+  font-weight: 300; /* Instagram usa peso fino para el username del perfil */
+  color: #262626;
+}
+
+.profile-edit-btn {
+  padding: 6px 16px;
+  background: transparent;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profile-edit-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Stats */
+.profile-stats {
+  display: flex;
+  gap: 40px;
+}
+
+.profile-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.profile-stat strong {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #262626;
+}
+
+.profile-stat span {
+  font-size: 0.875rem;
+  color: #262626;
+}
+
+/* Bio */
+.profile-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-fullname {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #262626;
+}
+
+.profile-bio-text {
+  font-size: 0.875rem;
+  color: #262626;
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+/* Tabs */
+.profile-tabs {
+  border-top: 1px solid #dbdbdb;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.profile-tab {
+  padding: 12px 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #8e8e8e;
+  cursor: pointer;
+  letter-spacing: 1px;
+  border-top: 1px solid transparent;
+  margin-top: -1px; /* Superpone el border-top del tab sobre el de .profile-tabs */
+}
+
+.profile-tab.active {
+  color: #262626;
+  border-top-color: #262626;
+}
+
+/* Grilla de publicaciones — 3 columnas como Instagram */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px; /* Gap pequeño, igual que Instagram */
+}
+
+.profile-grid-item {
+  position: relative; /* Necesario para posicionar el overlay */
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.profile-grid-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.2s;
+}
+
+/* Overlay que aparece al hacer hover — muestra likes y comentarios */
+.profile-grid-overlay {
+  position: absolute; /* Se posiciona sobre la imagen */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  opacity: 0;         /* Invisible por defecto */
+  transition: opacity 0.2s;
+}
+
+/* Al hacer hover en el item, el overlay se hace visible */
+.profile-grid-item:hover .profile-grid-overlay {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .profile-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .profile-stats {
+    justify-content: center;
+  }
+
+  .profile-avatar-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+}
