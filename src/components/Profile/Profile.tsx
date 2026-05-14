@@ -1,26 +1,19 @@
-// Profile.tsx
-// ¿Para qué sirve? Muestra la página de perfil del usuario logueado.
-// Incluye: foto, stats, bio y grilla de publicaciones.
-
 import type { User } from "../../data/user";
-import type { Post } from "../../types/post";
+import type { Post } from "../../types/Post";
 import "./Profile.css";
 
-// Props del perfil
 interface ProfileProps {
-  user: User;                        // datos del usuario
-  onLike: (id: string) => void;      // para dar like desde la grilla
-  onOpenPost: (post: Post) => void;  // para abrir el modal
+  user: User;                     
+  onLike: (id: string) => void;     
+  onOpenPost: (post: Post) => void;  
 }
 
 const Profile = ({ user, onLike, onOpenPost }: ProfileProps) => {
   return (
     <div className="profile">
 
-      {/* ── Sección superior: info del usuario ── */}
       <div className="profile-info">
 
-        {/* Avatar con ring de gradient */}
         <div className="profile-avatar-wrapper">
           <img
             src={user.avatar}
@@ -29,14 +22,12 @@ const Profile = ({ user, onLike, onOpenPost }: ProfileProps) => {
           />
         </div>
 
-        {/* Datos */}
         <div className="profile-details">
           <div className="profile-top-row">
             <h2 className="profile-username">{user.username}</h2>
             <button className="profile-edit-btn">Editar perfil</button>
           </div>
 
-          {/* Estadísticas: posts / seguidores / seguidos */}
           <div className="profile-stats">
             <div className="profile-stat">
               <strong>{user.posts.length}</strong>
@@ -52,7 +43,6 @@ const Profile = ({ user, onLike, onOpenPost }: ProfileProps) => {
             </div>
           </div>
 
-          {/* Bio */}
           <div className="profile-bio">
             <strong className="profile-fullname">{user.fullName}</strong>
             <p className="profile-bio-text">{user.bio}</p>
@@ -61,12 +51,10 @@ const Profile = ({ user, onLike, onOpenPost }: ProfileProps) => {
 
       </div>
 
-      {/* Separador con ícono de grilla */}
       <div className="profile-tabs">
         <div className="profile-tab active">⊞ PUBLICACIONES</div>
       </div>
 
-      {/* ── Grilla de publicaciones ── */}
       <div className="profile-grid">
         {user.posts.map((post) => (
           <div
@@ -83,7 +71,6 @@ const Profile = ({ user, onLike, onOpenPost }: ProfileProps) => {
                   "https://via.placeholder.com/300x300?text=🐱";
               }}
             />
-            {/* Overlay con likes que aparece al hover */}
             <div className="profile-grid-overlay">
               <span>❤️ {post.likes.toLocaleString()}</span>
               <span>💬 {post.comments.length}</span>
