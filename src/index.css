@@ -1,29 +1,31 @@
-/* index.css — Reset global: elimina estilos predeterminados del navegador */
-
 *, *::before, *::after {
-  box-sizing: border-box; /* El padding y border se incluyen en el width */
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  /* -apple-system usa la fuente del sistema: SF Pro en Mac, Segoe UI en Windows */
-  color: #262626;
-  background: #fafafa;
-  -webkit-font-smoothing: antialiased; /* Texto más suave en Mac */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e6edf3;
+  background: #0e1726;
+  -webkit-font-smoothing: antialiased;
 }
 
-img {
-  display: block; /* Elimina el espacio extra debajo de las imágenes */
-}
+img { display: block; }
 
 button {
-  font-family: inherit; /* Los botones heredan la fuente del body */
+  font-family: inherit;
   cursor: pointer;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
 }

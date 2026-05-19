@@ -3,6 +3,7 @@ import type { Post, Comment } from "./types/Post";
 import { fetchCatImages } from "./services/api";
 import { currentUser } from "./data/user";
 import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
 import Feed from "./components/Feed/Feed";
 import PostModal from "./components/PostModal/PostModal";
 import Profile from "./components/Profile/Profile";
@@ -40,8 +41,8 @@ const COMMENTS: Comment[] = [
 
 const getRandom = <A,>(array: A[]): A => array[Math.floor(Math.random() * array.length)];
 
-const buildPosts = (images: { id: string; url: string }[]): Post[] => {
-  return images.map((img, index) => ({
+const buildPosts = (images: { id: string; url: string }[]): Post[] =>
+  images.map((img, index) => ({
     id: img.id,
     imageUrl: img.url,
     username: USERNAMES[index % USERNAMES.length],
@@ -51,7 +52,6 @@ const buildPosts = (images: { id: string; url: string }[]): Post[] => {
     date: `Hace ${Math.floor(Math.random() * 23) + 1} horas`,
     comments: [getRandom(COMMENTS), getRandom(COMMENTS)],
   }));
-};
 
 const App = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -64,100 +64,69 @@ const App = () => {
     const loadPosts = async () => {
       try {
         setLoading(true);
-        const images = await fetchCatImages(12); // 12 fotos
-        const builtPosts = buildPosts(images);
-        setPosts(builtPosts);
-      } catch (err) {
+        const images = await fetchCatImages(12);
+        setPosts(buildPosts(images));
+      } catch {
         setError("No se pudieron cargar las fotos. Intentá de nuevo.");
       } finally {
         setLoading(false);
       }
     };
-
     loadPosts();
-  }, []); 
+  }, []);
 
   const ClickLike = (id: string): void => {
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
+    setPosts((prev) =>
+      prev.map((post) =>
         post.id === id
-          ? {
-              ...post,           
-              liked: !post.liked, 
-              likes: post.liked ? post.likes - 1 : post.likes + 1,
-            }
-          : post 
+          ? { ...post, liked: !post.liked, likes: post.liked ? post.likes - 1 : post.likes + 1 }
+          : post
       )
     );
-
     if (selectedPost?.id === id) {
       setSelectedPost((prev) =>
         prev
-          ? {
-              ...prev,
-              liked: !prev.liked,
-              likes: prev.liked ? prev.likes - 1 : prev.likes + 1,
-            }
+          ? { ...prev, liked: !prev.liked, likes: prev.liked ? prev.likes - 1 : prev.likes + 1 }
           : null
       );
     }
   };
 
-  const handleOpenPost = (post: Post): void => {
-    setSelectedPost(post);
-  };
-  const handleCloseModal = (): void => {
-    setSelectedPost(null);
-  };
-  
+  const handleOpenPost = (post: Post): void => setSelectedPost(post);
+  const handleCloseModal = (): void => setSelectedPost(null);
+
   return (
-    <div className="app"> 
-      <Header
-        currentView={currentView}
-        onNavigate={setCurrentView}
-        userAvatar={currentUser.avatar}
-      />
-
-      <main className="app-main">
-        {loading && (
-          <div className="app-loading">
-            <div className="loading-spinner"></div>
-            <p>Cargando fotos de gatos... </p>
-          </div>
-        )}
-
-        {error && !loading && (
-          <div className="app-error">
-            <p> {error}</p>
-            <button onClick={() => window.location.reload()}>
-              Reintentar
-            </button>
-          </div>
-        )}
-
-        {!loading && !error && currentView === "feed" && (
-          <Feed
-            posts={posts}
-            onLike={ClickLike}
-            onOpenPost={handleOpenPost}
-          />
-        )}
-
-        {!loading && !error && currentView === "profile" && (
-          <Profile
-            user={{ ...currentUser, posts }}
-            onLike={ClickLike}
-            onOpenPost={handleOpenPost}
-          />
-        )}
-      </main>
-
+    <div className="app">
+      <Header />
+      <div className="app-body">
+        <Sidebar currentView={currentView} onNavigate={setCurrentView} user={currentUser} />
+        <main className="app-main">
+          {loading && (
+            <div className="app-loading">
+              <div className="loading-spinner" />
+              <p>Cargando fotos de gatos...</p>
+            </div>
+          )}
+          {error && !loading && (
+            <div className="app-error">
+              <p>{error}</p>
+              <button onClick={() => window.location.reload()}>Reintentar</button>
+            </div>
+          )}
+          {!loading && !error && currentView === "feed" && (
+            <Feed posts={posts} onLike={ClickLike} onOpenPost={handleOpenPost} />
+          )}
+          {!loading && !error && currentView === "profile" && (
+            <Profile
+              user={{ ...currentUser, posts }}
+              onLike={ClickLike}
+              onOpenPost={handleOpenPost}
+            />
+          )}
+        </main>
+      </div>
       {selectedPost && (
-        <PostModal
-          post={selectedPost}
-          onClose={handleCloseModal}
-          onLike={ClickLike}
-        />
+        <PostModal post={selectedPost} onClose={handleCloseModal} onLike={ClickLike} />
       )}
     </div>
   );

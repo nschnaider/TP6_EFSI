@@ -12,6 +12,5 @@ export const fetchCatImages = async (limit: number = 12): Promise<CatImage[]> =>
     params: { limit },
   });
 
-  // es el array de imágenes que devuelve la API
   return response.data;
 };

@@ -1,98 +1,89 @@
-/* Profile.css */
-
 .profile {
-  max-width: 935px;
-  margin: 0 auto;
-  padding: 80px 20px 40px; /* 80px para compensar el header */
+  max-width: 900px;
+  color: #e6edf3;
 }
 
-/* Sección superior */
+/* Info del perfil */
 .profile-info {
   display: flex;
-  gap: 60px;
-  padding: 32px 0;
   align-items: flex-start;
+  gap: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 24px;
 }
 
-/* Avatar */
 .profile-avatar-wrapper {
-  flex-shrink: 0;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  padding: 3px; /* Espacio para el gradient ring */
+  padding: 3px;
   background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+  flex-shrink: 0;
 }
 
 .profile-avatar {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  border: 3px solid #0e1726;
   object-fit: cover;
-  border: 3px solid white; /* Borde blanco entre el gradient y la foto */
+  background: #1a2740;
 }
 
-/* Datos del perfil */
 .profile-details {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .profile-top-row {
   display: flex;
   align-items: center;
   gap: 20px;
-  flex-wrap: wrap;
+  margin-bottom: 16px;
 }
 
 .profile-username {
-  font-size: 1.5rem;
-  font-weight: 300; /* Instagram usa peso fino para el username del perfil */
-  color: #262626;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #ffffff;
 }
 
 .profile-edit-btn {
-  padding: 6px 16px;
-  background: transparent;
-  border: 1px solid #dbdbdb;
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e6edf3;
+  padding: 8px 20px;
+  border-radius: 8px;
   font-size: 0.875rem;
   font-weight: 600;
-  cursor: pointer;
   transition: background 0.2s;
 }
 
 .profile-edit-btn:hover {
-  background: #f0f0f0;
+  background: rgba(255, 255, 255, 0.14);
 }
 
-/* Stats */
 .profile-stats {
   display: flex;
-  gap: 40px;
+  gap: 32px;
+  margin-bottom: 16px;
 }
 
 .profile-stat {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
+  gap: 6px;
+  font-size: 0.9rem;
 }
 
 .profile-stat strong {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #262626;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .profile-stat span {
-  font-size: 0.875rem;
-  color: #262626;
+  color: #8b949e;
 }
 
-/* Bio */
 .profile-bio {
   display: flex;
   flex-direction: column;
@@ -100,100 +91,83 @@
 }
 
 .profile-fullname {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #262626;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .profile-bio-text {
   font-size: 0.875rem;
-  color: #262626;
-  line-height: 1.5;
-  max-width: 400px;
+  color: #8b949e;
 }
 
 /* Tabs */
 .profile-tabs {
-  border-top: 1px solid #dbdbdb;
   display: flex;
-  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   margin-bottom: 4px;
 }
 
 .profile-tab {
-  padding: 12px 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #8e8e8e;
-  cursor: pointer;
+  padding: 12px 16px;
+  font-size: 0.78rem;
+  font-weight: 700;
   letter-spacing: 1px;
+  color: #8b949e;
+  cursor: pointer;
   border-top: 1px solid transparent;
-  margin-top: -1px; /* Superpone el border-top del tab sobre el de .profile-tabs */
 }
 
 .profile-tab.active {
-  color: #262626;
-  border-top-color: #262626;
+  color: #ffffff;
+  border-top-color: #ffffff;
 }
 
-/* Grilla de publicaciones — 3 columnas como Instagram */
+/* Grid de fotos */
 .profile-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3px; /* Gap pequeño, igual que Instagram */
+  gap: 3px;
+  margin-top: 4px;
 }
 
 .profile-grid-item {
-  position: relative; /* Necesario para posicionar el overlay */
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #1a2740;
 }
 
+/* REQUISITO DEL ENUNCIADO: imágenes rotadas -3° */
 .profile-grid-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  transition: filter 0.2s;
+  transform: rotate(-3deg) scale(1.13);
+  transition: transform 0.35s ease;
 }
 
-/* Overlay que aparece al hacer hover — muestra likes y comentarios */
+.profile-grid-item:hover .profile-grid-image {
+  transform: rotate(-3deg) scale(1.2);
+}
+
 .profile-grid-overlay {
-  position: absolute; /* Se posiciona sobre la imagen */
+  position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  color: white;
-  font-weight: 700;
-  font-size: 0.9rem;
-  opacity: 0;         /* Invisible por defecto */
+  gap: 20px;
+  opacity: 0;
   transition: opacity 0.2s;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
 }
 
-/* Al hacer hover en el item, el overlay se hace visible */
 .profile-grid-item:hover .profile-grid-overlay {
   opacity: 1;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .profile-info {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 20px;
-  }
-
-  .profile-stats {
-    justify-content: center;
-  }
-
-  .profile-avatar-wrapper {
-    width: 100px;
-    height: 100px;
-  }
 }

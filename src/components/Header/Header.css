@@ -1,86 +1,107 @@
-/* Header.css — Estilos de la barra superior */
-
 .header {
-  position: fixed;        /* Se queda fijo arriba aunque hagas scroll */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
-  background: #ffffff;
-  border-bottom: 1px solid #dbdbdb; /* Gris claro, igual que Instagram */
-  z-index: 100;           /* Queda por encima de todo el contenido */
-}
-
-.header-container {
-  max-width: 935px;       /* Ancho máximo, igual que Instagram */
-  margin: 0 auto;         /* Centrado horizontal */
-  height: 100%;
+  height: 65px;
+  background: #0e1726;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 28px;
+  z-index: 100;
 }
 
 /* Logo */
 .header-logo {
   display: flex;
   align-items: center;
-  gap: 6px;
-}
-
-.header-logo-text {
-  font-family: 'Georgia', serif; /* Fuente más estilizada para el logo */
-  font-size: 1.4rem;
-  font-weight: 700;
-  background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
-  /* Gradient de colores igual que Instagram */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  gap: 10px;
+  color: white;
 }
 
 .header-logo-icon {
-  font-size: 1.2rem;
+  color: #e1306c;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
 }
 
-/* Navegación */
-.header-nav {
+.header-logo-text {
+  font-size: 1.55rem;
+  font-style: italic;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 600;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+/* Buscador */
+.header-search {
   display: flex;
-  gap: 16px;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 10px 20px;
+  width: 320px;
+  color: #8b949e;
 }
 
-.header-nav-btn {
+.header-search input {
   background: none;
   border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
+  outline: none;
+  color: #8b949e;
+  font-size: 0.875rem;
+  width: 100%;
+  cursor: default;
+}
+
+.header-search input::placeholder {
+  color: #8b949e;
+}
+
+/* Botones de acción */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-icon-btn {
+  background: none;
+  border: none;
+  color: #e6edf3;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.2s;
-  opacity: 0.5; /* Los inactivos se ven más opacos */
 }
 
-.header-nav-btn:hover {
-  background: #f0f0f0;
-  opacity: 1;
+.header-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Clase active: el botón de la vista actual */
-.header-nav-btn.active {
-  opacity: 1;
+.header-new-post {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(45deg, #833ab4, #e1306c, #fcb045);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 9px 22px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-left: 8px;
+  transition: opacity 0.2s;
 }
 
-/* Avatar del usuario */
-.header-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;     /* Círculo perfecto */
-  cursor: pointer;
-  border: 2px solid #dbdbdb;
-  transition: border-color 0.2s;
-  object-fit: cover;
-}
-
-.header-avatar:hover {
-  border-color: #833ab4;
+.header-new-post:hover {
+  opacity: 0.88;
 }

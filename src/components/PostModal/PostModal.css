@@ -1,99 +1,134 @@
-/* PostModal.css */
-
-/* Overlay: capa oscura semitransparente que cubre toda la pantalla */
 .modal-overlay {
-  position: fixed;       /* Fijo en la pantalla, no se mueve con el scroll */
-  inset: 0;              /* Equivale a top:0, right:0, bottom:0, left:0 */
-  background: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 200;          /* Encima del header (z-index: 100) */
+  z-index: 200;
   padding: 20px;
 }
 
-/* Contenedor del modal */
 .modal-container {
-  background: #ffffff;
-  border-radius: 4px;
+  background: #161e2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
   display: flex;
   max-width: 900px;
   width: 100%;
-  max-height: 90vh;      /* No ocupa más del 90% de la altura de la pantalla */
+  max-height: 88vh;
   overflow: hidden;
 }
 
 /* Columna de imagen */
 .modal-image-col {
-  flex: 1;               /* Ocupa el espacio disponible */
-  background: #000;
-  display: flex;
-  align-items: center;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  background: #0e1726;
 }
 
+/* REQUISITO DEL ENUNCIADO: imagen rotada -3° */
 .modal-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;   /* La imagen se ve completa sin cortarse */
+  object-fit: cover;
+  transform: rotate(-3deg) scale(1.13);
 }
 
-/* Columna de información */
+/* Columna de info */
 .modal-info-col {
   width: 340px;
-  min-width: 340px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  border-left: 1px solid #dbdbdb;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Header del modal */
+/* Header */
 .modal-header {
   display: flex;
   align-items: center;
-  padding: 14px 16px;
-  border-bottom: 1px solid #dbdbdb;
-  gap: 10px;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .modal-avatar {
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  object-fit: cover;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#161e2e, #161e2e) padding-box,
+    linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045) border-box;
+  flex-shrink: 0;
+}
+
+.modal-user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-username {
-  font-size: 0.875rem;
-  font-weight: 600;
-  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.modal-date {
+  font-size: 0.75rem;
+  color: #8b949e;
 }
 
 .modal-close-btn {
   background: none;
   border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  color: #262626;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: background 0.2s;
+  color: #8b949e;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s, background 0.2s;
 }
 
 .modal-close-btn:hover {
-  background: #f0f0f0;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* Descripción */
 .modal-description {
   display: flex;
-  gap: 10px;
-  padding: 16px;
-  border-bottom: 1px solid #f0f0f0;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Comentarios */
+.modal-comment-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #1a2740;
+}
+
+.modal-comment-username {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #e6edf3;
+}
+
+.modal-comment-text {
+  font-size: 0.84rem;
+  color: #c0c8d8;
+}
+
+/* Lista de comentarios */
 .modal-comments {
-  flex: 1;               /* Ocupa el espacio disponible y hace scroll si es necesario */
+  flex: 1;
   overflow-y: auto;
   padding: 12px 16px;
   display: flex;
@@ -103,95 +138,59 @@
 
 .modal-comment {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: flex-start;
 }
 
-.modal-comment-avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  flex-shrink: 0;        /* No se achica si el texto es largo */
-  object-fit: cover;
-}
-
-.modal-comment-username {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #262626;
-}
-
-.modal-comment-text {
-  font-size: 0.8rem;
-  color: #262626;
-}
-
-.modal-comment-date {
-  font-size: 0.7rem;
-  color: #8e8e8e;
-  margin-top: 2px;
-}
-
-/* Acciones del modal */
+/* Acciones */
 .modal-actions {
-  display: flex;
-  padding: 8px 12px;
-  border-top: 1px solid #dbdbdb;
-  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.modal-like-btn {
+.modal-action-btns {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-icon-btn {
   background: none;
   border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
+  color: #e6edf3;
   padding: 4px;
-  transition: transform 0.15s ease;
+  display: flex;
+  align-items: center;
+  transition: transform 0.15s;
 }
 
-.modal-like-btn:hover {
-  transform: scale(1.2);
+.modal-icon-btn:hover {
+  transform: scale(1.15);
 }
 
-.modal-like-btn.liked {
+.modal-icon-btn.liked svg {
   animation: like-pop 0.3s ease;
 }
 
 @keyframes like-pop {
-  50% { transform: scale(1.4); }
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.45); }
+  100% { transform: scale(1); }
 }
 
-/* Meta (likes y fecha) */
+/* Meta info */
 .modal-meta {
   padding: 8px 16px 16px;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.modal-likes {
+.modal-meta strong {
   font-size: 0.875rem;
+  color: #ffffff;
   display: block;
-  margin-bottom: 4px;
 }
 
-.modal-date {
+.modal-meta-date {
   font-size: 0.75rem;
-  color: #8e8e8e;
-  text-transform: uppercase;
-}
-
-/* Responsive: en pantallas chicas, el modal se apila verticalmente */
-@media (max-width: 700px) {
-  .modal-container {
-    flex-direction: column;
-    max-height: 95vh;
-  }
-
-  .modal-image-col {
-    max-height: 50vh;
-  }
-
-  .modal-info-col {
-    width: 100%;
-    min-width: unset;
-  }
+  color: #8b949e;
+  margin-top: 4px;
 }
