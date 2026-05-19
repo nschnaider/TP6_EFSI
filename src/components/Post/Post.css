@@ -11,13 +11,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: rotate(-3deg) scale(1.13);
   transition: transform 0.35s ease;
 }
 
-.post-card:hover .post-card-img {
-  transform: rotate(-3deg) scale(1.2);
-}
 
 /* Degradado en la parte inferior de la tarjeta */
 .post-card-overlay {
