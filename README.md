@@ -117,7 +117,6 @@ Decidí mostrar nombre de usuario, nombre completo, bio, foto de perfil, cantida
 
 Decisiones de diseño
 
-- Usé tema oscuro (`#0e1726`) para seguir el Figma lo más posible
-- Todas las imágenes tienen `transform: rotate(-3deg)` como pedía el enunciado
+- Usé colores oscuros para seguir el Figma lo más posible
 - El feed usa CSS Grid con `nth-child` para simular el efecto masonry del Figma
-- Los avatares los genero con DiceBear usando el username de cada post como semilla
+- Los avatares los genero con DiceBear usando el username de cada post
